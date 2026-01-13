@@ -1,0 +1,2 @@
+# Corporate-Website-Design-CMS-Development-for-Bee-Group
+I designed and developed a modern corporate website for Bee Group with a strong focus on professionalism, clarity, and scalability. The website was built using a Content Management System (CMS) to ensure easy content updates while maintaining a polished corporate identity. The project emphasizes clean UI, structured layouts, responsive design.
