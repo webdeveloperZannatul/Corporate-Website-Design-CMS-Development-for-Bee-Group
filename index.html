@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Website for Bee Group</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bee: {
+                            gold: '#F59E0B', // Amber 500
+                            dark: '#111827', // Gray 900
+                            light: '#FFFBEB', // Amber 50
+                            accent: '#D97706', // Amber 600
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'honeycomb': "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%23f59e0b' fill-opacity='0.05' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-7.5l12.99-7.5H28v2.31h-.01L17 42.65V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Hexagon Clip Path */
+        .hexagon-mask {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+        /* Smooth Text Transition */
+        .fade-text {
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        /* Navigation Transition */
+        header {
+            transition: all 0.3s ease;
+        }
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #F59E0B; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D97706; 
+        }
+
+        /* Accreditation Badge Styling (Simulation) */
+        .accreditation-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 2px solid #e5e7eb;
+            color: #374151;
+            transition: all 0.3s ease;
+        }
+        .accreditation-badge:hover {
+            border-color: #F59E0B;
+            color: #F59E0B;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Image Overlay Gradient */
+        .hero-overlay {
+            background: linear-gradient(90deg, rgba(17, 24, 39, 0.9) 0%, rgba(17, 24, 39, 0.7) 50%, rgba(17, 24, 39, 0.4) 100%);
+        }
+
+        .service-card:hover .service-icon {
+            background-color: #F59E0B;
+            color: white;
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-gray-50 overflow-x-hidden">
+
+    <!-- Header / Navigation -->
+    <header style="background-color: white;" class="fixed w-full top-0 z-50 py-6 px-4 md:px-8 transition-all duration-300" id="main-header">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div>
+                    <img style="height: 70px; width:100px;" src="https://i.postimg.cc/W3Xpz8PK/Bee-Group-smaller.png">
+                </div>
+               
+                <!-- <div class="flex flex-col">
+                    <span class="text-2xl font-bold text-gray-900 leading-none tracking-tight group-hover:text-bee-gold transition-colors">BEE GROUP</span>
+                    <span class="text-xs text-gray-500 font-medium tracking-widest uppercase">Professional Services</span>
+                </div> -->
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#home" class="text-sm font-semibold text-gray-700 hover:text-bee-gold transition-colors">Home</a>
+                <a href="#services" class="text-sm font-semibold text-gray-700 hover:text-bee-gold transition-colors">Services</a>
+                <a href="#sustainability" class="text-sm font-semibold text-gray-700 hover:text-bee-gold transition-colors">Values</a>
+                <a href="#accreditations" class="text-sm font-semibold text-gray-700 hover:text-bee-gold transition-colors">Accreditations</a>
+                <a href="#projects" class="text-sm font-semibold text-gray-700 hover:text-bee-gold transition-colors">Projects</a>
+                <a href="#contact" class="px-5 py-2.5 bg-bee-gold hover:bg-bee-accent text-white text-sm font-bold rounded shadow-md transition-all transform hover:-translate-y-0.5 hover:shadow-lg">
+                    Request a Quote
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-800 focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100">
+            <div class="flex flex-col p-4 space-y-4">
+                <a href="#home" class="text-gray-800 font-medium">Home</a>
+                <a href="#services" class="text-gray-800 font-medium">Services</a>
+                <a href="#sustainability" class="text-gray-800 font-medium">Values</a>
+                <a href="#accreditations" class="text-gray-800 font-medium">Accreditations</a>
+                <a href="#projects" class="text-gray-800 font-medium">Projects</a>
+                <a href="#contact" class="text-bee-accent font-bold">Request a Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop" alt="Construction Site" class="w-full h-full object-cover">
+        </div>
+        <!-- Overlay -->
+        <div class="absolute inset-0 z-10 hero-overlay"></div>
+        <!-- Honeycomb Pattern Overlay -->
+        <div class="absolute inset-0 z-10 opacity-10 bg-honeycomb"></div>
+
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-16">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <div class="inline-flex items-center gap-2 bg-bee-gold/20 backdrop-blur-sm border border-bee-gold/30 px-3 py-1 rounded-full mb-6">
+                        <i class="fa-solid fa-certificate text-bee-gold"></i>
+                        <span class="text-bee-gold font-bold text-xs uppercase tracking-wider">Trusted Industry Leaders</span>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
+                        Building a <br>
+                        <span class="text-bee-gold">Sustainable Future</span><br>
+                        with Precision.
+                    </h1>
+                    <p class="text-lg text-gray-300 mb-8 max-w-lg leading-relaxed">
+                        Bee Group delivers excellence in <strong class="text-white">Electrical</strong>, <strong class="text-white">Construction</strong>, and <strong class="text-white">Maintenance</strong>. We are your reliable partner for safe, efficient, and sustainable infrastructure.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#services" class="px-8 py-4 bg-bee-gold hover:bg-bee-accent text-white font-bold rounded shadow-lg transition-transform transform hover:-translate-y-1 text-center">
+                            Explore Services
+                        </a>
+                        <a href="#contact" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded hover:bg-white hover:text-gray-900 transition-colors text-center">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bee Fact Widget -->
+                <div class="hidden md:flex justify-end" data-aos="fade-left" data-aos-delay="200">
+                    <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl w-80 relative">
+                        <div class="absolute -top-6 -left-6 bg-bee-gold p-4 rounded-full hexagon-mask shadow-lg animate-bounce duration-[3000ms]">
+                            <img style="height: 30px; width:30px;" src="https://i.postimg.cc/W3Xpz8PK/Bee-Group-smaller.png">
+                        </div>
+                        <h3 class="text-white font-bold text-lg mb-2">Did you know?</h3>
+                        <p id="bee-fact" class="text-gray-200 text-sm italic fade-text min-h-[60px]">
+                            "Bees are responsible for pollinating over 75% of the world's food crops."
+                        </p>
+                        <div class="mt-4 flex gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-bee-gold"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <a href="#services" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 text-white opacity-70 hover:opacity-100 hover:text-bee-gold transition-colors animate-bounce">
+            <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </a>
+    </section>
+
+    <!-- Core Services Section -->
+    <section id="services" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-bee-accent font-bold text-sm tracking-widest uppercase">Our Expertise</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">Comprehensive Solutions</h2>
+                <div class="w-16 h-1 bg-bee-gold mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Electrical Card -->
+                <div class="service-card group bg-gray-50 border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop" alt="Electrical Work" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-white rounded-lg shadow-md flex items-center justify-center service-icon transition-all duration-500">
+                            <i class="fa-solid fa-bolt text-xl text-bee-gold group-hover:text-white"></i>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-bee-accent transition-colors">Electrical Services</h3>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            Full-spectrum electrical solutions including installation, testing, and certification for commercial and industrial sectors. NAPIT approved safety.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bee-gold text-xs"></i> Industrial Wiring</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bee-gold text-xs"></i> PAT Testing & Certification</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bee-gold text-xs"></i> Energy Efficient Lighting</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Construction Card -->
+                <div class="service-card group bg-gray-50 border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1931&auto=format&fit=crop" alt="Construction" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-white rounded-lg shadow-md flex items-center justify-center service-icon transition-all duration-500">
+                            <i class="fa-solid fa-trowel-bricks text-xl text-bee-gold group-hover:text-white"></i>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-bee-accent transition-colors">Building Construction</h3>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            End-to-end construction project management. From groundworks to final fit-out, we deliver high-quality structures on time and within budget.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bee-gold text-xs"></i> Commercial Builds</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bee-gold text-xs"></i> Renovations & Extensions</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bee-gold text-xs"></i> Project Management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Maintenance Card -->
+                <div class="service-card group bg-gray-50 border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1932&auto=format&fit=crop" alt="Maintenance" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-white rounded-lg shadow-md flex items-center justify-center service-icon transition-all duration-500">
+                            <i class="fa-solid fa-screwdriver-wrench text-xl text-bee-gold group-hover:text-white"></i>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-bee-accent transition-colors">Maintenance & Repairs</h3>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            Proactive and reactive maintenance services ensuring your facilities operate smoothly 24/7. Reliability is our promise.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bee-gold text-xs"></i> Scheduled Maintenance</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bee-gold text-xs"></i> Emergency Repairs</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bee-gold text-xs"></i> Facility Management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bee Fact Divider -->
+    <div class="bg-bee-gold py-6 overflow-hidden relative">
+        <div class="absolute inset-0 opacity-10 bg-honeycomb"></div>
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-center gap-4 text-white">
+            <i class="fa-solid fa-info-circle text-xl"></i>
+            <p class="font-medium text-lg">Bee Fact: A single honey bee colony can produce around 100kg of honey each year. We strive for that level of productivity.</p>
+        </div>
+    </div>
+
+    <!-- Sustainability & Values -->
+    <section id="sustainability" class="py-20 bg-gray-50 bg-honeycomb">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="relative" data-aos="fade-right">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-bee-gold/20 rounded-full blur-2xl"></div>
+                    <img src="https://i.postimg.cc/4xTZQqww/Green-building1.png?q=80&w=1951&auto=format&fit=crop" alt="Green Building" class="rounded-xl shadow-2xl relative z-10 hexagon-mask w-full max-w-md mx-auto md:mx-0">
+                    <div class="absolute bottom-10 -right-4 bg-white p-4 rounded shadow-lg z-20 flex items-center gap-3">
+                        <div class="text-green-600 text-3xl"><i class="fa-solid fa-leaf"></i></div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase font-bold">Commitment to</p>
+                            <p class="font-bold text-gray-900">Net Zero</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <span class="text-bee-accent font-bold text-sm tracking-widest uppercase">Our Values</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2 mb-6">Built on Safety, Sustainability & Integrity</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Like a hive, we operate with a collective purpose. Safety is paramount, and sustainability is at the core of every project we undertake. We don't just build for today; we engineer for a greener tomorrow.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 flex-shrink-0 bg-green-100 rounded-lg flex items-center justify-center text-green-600">
+                                <i class="fa-solid fa-recycle text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Sustainability First</h4>
+                                <p class="text-sm text-gray-600">Using eco-friendly materials and energy-efficient practices to minimize carbon footprint.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 flex-shrink-0 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                                <i class="fa-solid fa-helmet-safety text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Health & Safety</h4>
+                                <p class="text-sm text-gray-600">Rigorous safety protocols ensuring the well-being of our team, clients, and the public.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 flex-shrink-0 bg-yellow-100 rounded-lg flex items-center justify-center text-yellow-600">
+                                <i class="fa-solid fa-handshake text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Reliability</h4>
+                                <p class="text-sm text-gray-600">We turn up when we say we will, delivering quality work with transparent communication.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accreditations Section -->
+    <!-- <section id="accreditations" class="py-16 bg-white border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-gray-500 font-medium mb-8 uppercase tracking-widest text-sm">Accredited & Certified By</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <-- Simulated Logo Badges -->
+                <!-- <div class="accreditation-badge h-24 p-4 rounded group relative" title="National Association of Professional Inspectors and Testers">
+                   <div class="text-center">
+                    <div>
+                    <img style="height: 90px; width:100px;" src="https://i.postimg.cc/W3Xpz8PK/Bee-Group-smaller.png">
+                </div>
+                       <span class="block text-xl font-black">NAPIT</span>
+                       <span class="text-[0.6rem] block text-gray-400">Approved</span>
+                   </div>
+                </div>
+                
+                <div class="accreditation-badge h-24 p-4 rounded group" title="Constructionline Gold">
+                    <div class="text-center">
+                        <span class="block text-sm font-bold">Constructionline</span>
+                        <div class="flex justify-center mt-1">
+                            <i class="fa-solid fa-star text-bee-gold"></i>
+                            <span class="text-xs font-bold ml-1 text-bee-gold">GOLD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accreditation-badge h-24 p-4 rounded group" title="SSIP - Safety Schemes in Procurement">
+                     <div class="text-center">
+                       <span class="block text-xl font-black">SSIP</span>
+                       <span class="text-[0.6rem] block text-gray-400">Certified</span>
+                   </div>
+                </div>
+
+                <div class="accreditation-badge h-24 p-4 rounded group" title="City & Guilds Qualified">
+                     <div class="text-center">
+                       <span class="block text-sm font-black">City&</span>
+                       <span class="block text-sm font-black">Guilds</span>
+                   </div>
+                </div>
+
+                <div class="accreditation-badge h-24 p-4 rounded group" title="CHAS Approved">
+                     <div class="text-center">
+                       <span class="block text-xl font-black">CHAS</span>
+                       <span class="text-[0.6rem] block text-gray-400">Premium Plus</span>
+                   </div>
+                </div>
+
+                <div class="accreditation-badge h-24 p-4 rounded group" title="SafeContractor">
+                     <div class="text-center">
+                       <span class="block text-sm font-black">Safe</span>
+                       <span class="block text-sm font-light">Contractor</span>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </section> --> 
+    <section id="accreditations" class="section-padding bg-muted relative overflow-hidden"><div class="absolute inset-0 honeycomb-pattern opacity-30"></div><div class="container-wide relative z-10"><div class="text-center mb-16" style="opacity: 1; transform: none;"><span class="inline-flex items-center gap-2 px-4 py-2 bg-honey/10 rounded-full text-honey text-sm font-medium mb-4">Our Credentials</span><h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">Accreditations &amp; <span class="text-honey">Training</span></h2><p class="text-lg text-muted-foreground max-w-2xl mx-auto">Fully accredited and compliant with industry standards. Our certifications demonstrate our commitment to quality, safety, and professional excellence.</p></div><div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6" style="opacity: 1;"><div class="group relative bg-card rounded-xl p-6 border border-border hover:border-honey/30 hover:shadow-lg transition-all duration-300 flex items-center justify-center" style="opacity: 1; transform: none;"><img style="height:90px; width: auto;" src="https://i.postimg.cc/gjcJKJpd/NAPIT.png" alt="NAPIT"><div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-primary text-primary-foreground text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">National Association of Professional Inspectors and Testers<div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-primary"></div></div></div><div class="group relative bg-card rounded-xl p-6 border border-border hover:border-honey/30 hover:shadow-lg transition-all duration-300 flex items-center justify-center" style="opacity: 1; transform: none;"><img src="https://i.postimg.cc/yddkzxJZ/cs-approved.png" alt="Constructionline Gold"><div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-primary text-primary-foreground text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">UK Government-owned scheme for pre-qualified contractors<div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-primary"></div></div></div><div class="group relative bg-card rounded-xl p-6 border border-border hover:border-honey/30 hover:shadow-lg transition-all duration-300 flex items-center justify-center" style="opacity: 1; transform: none;"><img src="https://i.postimg.cc/htDJ02SH/Once-for-all.png" alt="Once For All" class="max-h-16 w-auto object-contain "><div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-primary text-primary-foreground text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">Health &amp; Safety compliance verification<div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-primary"></div></div></div><div class="group relative bg-card rounded-xl p-6 border border-border hover:border-honey/30 hover:shadow-lg transition-all duration-300 flex items-center justify-center" style="opacity: 1; transform: none;"><img src="https://i.postimg.cc/1zNy0FN2/city-and-guilds.jpg" alt="City &amp; Guilds"><div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-primary text-primary-foreground text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">Internationally recognised vocational qualifications<div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-primary"></div></div></div><div class="group relative bg-card rounded-xl p-6 border border-border hover:border-honey/30 hover:shadow-lg transition-all duration-300 flex items-center justify-center" style="opacity: 1; transform: none;"><img src="https://i.postimg.cc/bJJHFzpF/IPAF.png" alt="IPAF"><div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-primary text-primary-foreground text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">International Powered Access Federation certified<div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-primary"></div></div></div></div><p class="text-center text-muted-foreground mt-8 text-sm" style="opacity: 1;">Plus SSIP, PASMA, UKAS, and additional industry certifications</p></div></section>
+
+    <!-- Projects / Gallery Section -->
+    <section id="projects" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold text-gray-900">Featured Projects</h2>
+                <p class="text-gray-500 mt-2">Browse our portfolio of completed works.</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-10">
+                <button onclick="filterProjects('all')" class="filter-btn active px-5 py-2 rounded-full border border-bee-gold bg-bee-gold text-white font-medium text-sm transition-all shadow hover:shadow-md">All</button>
+                <button onclick="filterProjects('electrical')" class="filter-btn px-5 py-2 rounded-full border border-gray-300 bg-white text-gray-600 font-medium text-sm hover:border-bee-gold hover:text-bee-gold transition-all">Electrical</button>
+                <button onclick="filterProjects('construction')" class="filter-btn px-5 py-2 rounded-full border border-gray-300 bg-white text-gray-600 font-medium text-sm hover:border-bee-gold hover:text-bee-gold transition-all">Construction</button>
+                <button onclick="filterProjects('maintenance')" class="filter-btn px-5 py-2 rounded-full border border-gray-300 bg-white text-gray-600 font-medium text-sm hover:border-bee-gold hover:text-bee-gold transition-all">Maintenance</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="project-grid">
+                <!-- Project 1 (Electrical) -->
+                <div class="project-item electrical group relative rounded-lg overflow-hidden h-64 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1558402529-d2638a7023e9?q=80&w=2070&auto=format&fit=crop" alt="Industrial Wiring" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-bee-gold text-xs font-bold uppercase">Electrical</span>
+                        <h4 class="text-white font-bold text-lg">Industrial Server Rewiring</h4>
+                    </div>
+                </div>
+
+                <!-- Project 2 (Construction) -->
+                <div class="project-item construction group relative rounded-lg overflow-hidden h-64 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop" alt="Office Build" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-bee-gold text-xs font-bold uppercase">Construction</span>
+                        <h4 class="text-white font-bold text-lg">Tech Hub Office Complex</h4>
+                    </div>
+                </div>
+
+                <!-- Project 3 (Maintenance) -->
+                <div class="project-item maintenance group relative rounded-lg overflow-hidden h-64 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1621929747188-0b4dc28498d2?q=80&w=1972&auto=format&fit=crop" alt="HVAC Repair" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-bee-gold text-xs font-bold uppercase">Maintenance</span>
+                        <h4 class="text-white font-bold text-lg">Emergency HVAC Repair</h4>
+                    </div>
+                </div>
+
+                <!-- Project 4 (Construction) -->
+                <div class="project-item construction group relative rounded-lg overflow-hidden h-64 cursor-pointer">
+                    <img src="https://i.postimg.cc/xdkFcybC/house-with-solar-panels-and-a-mo.png?q=80&w=2028&auto=format&fit=crop" alt="Residential Extension" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-bee-gold text-xs font-bold uppercase">Construction</span>
+                        <h4 class="text-white font-bold text-lg">Residential Eco-Extension</h4>
+                    </div>
+                </div>
+
+                 <!-- Project 5 (Electrical) -->
+                 <div class="project-item electrical group relative rounded-lg overflow-hidden h-64 cursor-pointer">
+                    <img src="https://i.postimg.cc/rszdkmHy/Benefits-of-Commercial-Lighting.png?q=80&w=2070&auto=format&fit=crop" alt="Lighting" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-bee-gold text-xs font-bold uppercase">Electrical</span>
+                        <h4 class="text-white font-bold text-lg">Retail Lighting Upgrade</h4>
+                    </div>
+                </div>
+
+                 <!-- Project 6 (Maintenance) -->
+                 <div class="project-item maintenance group relative rounded-lg overflow-hidden h-64 cursor-pointer">
+                    <img src="https://i.postimg.cc/V6mM3z1m/657cc34d9d394cf4901e4d6d-image.png?q=80&w=2070&auto=format&fit=crop" alt="Facility Check" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-bee-gold text-xs font-bold uppercase">Maintenance</span>
+                        <h4 class="text-white font-bold text-lg">Annual Facility Audit</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <!-- <section id="about" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="w-20 h-20 bg-bee-gold rounded-full flex items-center justify-center mx-auto mb-6 hexagon-mask">
+                 <i class="fa-solid fa-users text-3xl text-white"></i>
+            </div>
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-6">About Bee Group</h2>
+            <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                Founded on the principles of hard work, community, and precision, Bee Group has grown into a leading multi-disciplinary contractor. We mirror the efficiency of nature to deliver robust infrastructure solutions. Whether it's a complex electrical installation or a large-scale build, our mission remains the same: <strong>To build safely, sustainably, and successfully.</strong>
+            </p>
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop" alt="Team Meeting" class="w-full h-64 object-cover rounded-xl shadow-lg mb-8" style="object-position: center 30%;">
+        </div>
+    </section>
+ -->
+    <section id="about" style="padding:80px 0; background:#ffffff;">
+    <div style="max-width:1100px; margin:0 auto; padding:0 20px;">
+        <div style="display:flex; gap:40px; align-items:center; flex-wrap:wrap;">
+
+            <!-- Image Side -->
+            <div style="flex:1; min-width:300px;">
+                <img 
+                    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop"
+                    alt="Bee Group Team"
+                    style="width:100%; height:420px; object-fit:cover; object-position:center 30%; border-radius:16px; box-shadow:0 10px 25px rgba(0,0,0,0.12);"
+                >
+            </div>
+
+            <!-- Content Side -->
+            <div style="flex:1; min-width:300px;">
+                <div style="width:70px; height:70px; background:#d4af37; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+                    <i class="fa-solid fa-users" style="font-size:28px; color:#ffffff;"></i>
+                </div>
+
+                <h2 style="font-size:32px; font-weight:800; color:#111827; margin-bottom:20px;">
+                    About Bee Group
+                </h2>
+
+                <p style="font-size:17px; line-height:1.8; color:#4b5563; margin-bottom:30px;">
+                    Founded on the principles of hard work, community, and precision, Bee Group has grown into a
+                    leading multi-disciplinary contractor. Inspired by the efficiency of nature, we deliver robust
+                    infrastructure solutions across electrical, construction, and industrial sectors.
+                    <br><br>
+                    Our mission is simple yet uncompromising:
+                    <strong>to build safely, sustainably, and successfully.</strong>
+                </p>
+
+                <a href="#contact" style="
+                    display:inline-block;
+                    padding:14px 32px;
+                    background:#d4af37;
+                    color:#ffffff;
+                    font-size:15px;
+                    font-weight:600;
+                    text-decoration:none;
+                    border-radius:8px;
+                    transition:all 0.3s ease;
+                "
+                onmouseover="this.style.background='#b8962e';"
+                onmouseout="this.style.background='#d4af37';">
+                    Learn More About Us
+                </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-bee-dark relative">
+        <div class="absolute inset-0 opacity-5 bg-honeycomb"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Contact Info -->
+                <div class="text-white">
+                    <span class="text-bee-gold font-bold text-sm tracking-widest uppercase">Get in Touch</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mt-2 mb-6">Start Your Project</h2>
+                    <p class="text-gray-400 mb-8">
+                        Ready to discuss your requirements? Our team is on hand to provide expert advice and a competitive quote.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <i class="fa-solid fa-location-dot text-bee-gold text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold">Head Office</h4>
+                                <p class="text-gray-400 text-sm">123 Honeycomb Way, Enterprise Park,<br>London, UK, SW1A 1AA</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="fa-solid fa-phone text-bee-gold text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold">Phone</h4>
+                                <p class="text-gray-400 text-sm">+44 (0) 20 1234 5678</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="fa-solid fa-envelope text-bee-gold text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold">Email</h4>
+                                <p class="text-gray-400 text-sm">info@beegroup.co.uk</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="bg-white rounded-xl shadow-2xl p-8">
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-bee-gold focus:border-bee-gold outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-bee-gold focus:border-bee-gold outline-none transition-all">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-bee-gold focus:border-bee-gold outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Service Required</label>
+                            <select class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-bee-gold focus:border-bee-gold outline-none transition-all">
+                                <option>Electrical Services</option>
+                                <option>Building Construction</option>
+                                <option>Maintenance & Repairs</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-bee-gold focus:border-bee-gold outline-none transition-all"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 bg-bee-gold hover:bg-bee-accent text-white font-bold rounded shadow-lg transition-colors">
+                            Send Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white border-t border-gray-800" style="background-color: rgb(63 72 90);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div >
+                           <img style="height: 90px; width:100px;" src="https://i.postimg.cc/W3Xpz8PK/Bee-Group-smaller.png">
+                        </div>
+                        
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Professional services delivered with nature's precision. Electrical, Construction, and Maintenance.
+                    </p>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="font-bold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#services" class="hover:text-bee-gold transition-colors">Services</a></li>
+                        <li><a href="#projects" class="hover:text-bee-gold transition-colors">Projects</a></li>
+                        <li><a href="#about" class="hover:text-bee-gold transition-colors">About Us</a></li>
+                        <li><a href="#contact" class="hover:text-bee-gold transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="font-bold text-white mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>Electrical Installation</li>
+                        <li>Full-Scale Construction</li>
+                        <li>Facility Maintenance</li>
+                        <li>Emergency Repairs</li>
+                    </ul>
+                </div>
+
+                <!-- Legal/Fun Fact -->
+                <div>
+                    <h4 class="font-bold text-white mb-4">Stay Connected</h4>
+                    <div class="flex gap-4 mb-4">
+                        <a href="#" class="w-8 h-8 bg-gray-800 flex items-center justify-center rounded hover:bg-bee-gold transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 flex items-center justify-center rounded hover:bg-bee-gold transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 flex items-center justify-center rounded hover:bg-bee-gold transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                    <p style="color: white;"class="text-xs text-gray-500 italic border-l-2 border-bee-gold pl-2">
+                        "Bees communicate through dance. We communicate through results."
+                    </p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+                <p style="color:white;">&copy; 2026 Bee Group Services. All rights reserved designed By Zannatul.</p>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800,
+        });
+
+        // Sticky Header Logic
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Bee Facts Rotator
+        const facts = [
+            "Bees are responsible for pollinating over 75% of the world's food crops.",
+            "Honey bees are super-important pollinators for flowers, fruits and vegetables.",
+            "A hive works as a perfect unit, just like our project teams.",
+            "Bees build hexagons because they are the most efficient shape for storage.",
+            "Bees have been producing honey for at least 150 million years."
+        ];
+        
+        const factElement = document.getElementById('bee-fact');
+        let factIndex = 0;
+
+        setInterval(() => {
+            factElement.style.opacity = '0';
+            setTimeout(() => {
+                factIndex = (factIndex + 1) % facts.length;
+                factElement.innerText = `"${facts[factIndex]}"`;
+                factElement.style.opacity = '1';
+            }, 500);
+        }, 5000);
+
+        // Project Filter Logic
+        function filterProjects(category) {
+            const items = document.querySelectorAll('.project-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update Buttons
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'bg-bee-gold', 'text-white', 'border-bee-gold');
+                btn.classList.add('bg-white', 'text-gray-600', 'border-gray-300');
+            });
+            
+            event.target.classList.remove('bg-white', 'text-gray-600', 'border-gray-300');
+            event.target.classList.add('active', 'bg-bee-gold', 'text-white', 'border-bee-gold');
+
+            // Filter Items
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                    // Trigger animation restart slightly
+                    item.style.opacity = '0';
+                    setTimeout(() => item.style.opacity = '1', 100);
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
